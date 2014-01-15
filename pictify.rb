@@ -5,18 +5,12 @@ class Pictify
 
   # Call me maybe??
   def self.do_magic! text
-    text.gsub!(/\s/, '_')
-    text << text while PICTURE.length > text.length
+    msg = text.gsub(/\s/, '_')
+    msg << msg while PICTURE.length > msg.length
     
-    output = ''
-    PICTURE.each_char do |pixel|
-      if NON_PIXELS.include? pixel
-        output << pixel        
-      else
-        output << text.slice!(0) if text.length > 1
-      end
-    end
-    output
+    PICTURE.each_char.map do |pixel| 
+      NON_PIXELS.include?(pixel) ? pixel : msg.slice!(0)
+    end.join
   end
 
   NON_PIXELS = [" ", "\n", "\t", "\T"]
