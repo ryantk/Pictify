@@ -73,4 +73,4 @@ class Pictify
 PIC
 end
 
-puts Pictify.do_magic! 'Ruby is awsummm'
+puts Pictify.do_magic!(ARGV.first || 'Ruby is awsummm')
